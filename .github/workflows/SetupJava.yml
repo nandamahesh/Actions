@@ -1,0 +1,20 @@
+name: Install Java and Check Version
+
+on: [push] # Triggers the workflow on push or pull request events
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # The type of runner that the job will run on
+
+    steps:
+    - uses: actions/checkout@v4 # Checks out your repository code
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4 # Action to set up Java
+      with:
+        java-version: '17' # Specify the desired Java version
+        distribution: 'temurin' # Specify the distribution (e.g., Adoptium Temurin)
+        cache: 'maven' # Optional: Caches dependencies for faster subsequent builds (if using Maven)
+
+    - name: Verify Java Version
+      run: java -version # Runs a shell command to print the installed Java version
